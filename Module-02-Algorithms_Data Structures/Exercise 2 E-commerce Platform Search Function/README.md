@@ -1,30 +1,30 @@
-\# Exercise 2 - E-commerce Platform Search Function
+# Exercise 2 - E-commerce Platform Search Function
 
 
 
-\## Objective
+## Objective
 
 Implement Linear Search and Binary Search for searching products.
 
 
 
-\## Classes
+## Classes
 
-\- Product
+- Product
 
-\- LinearSearch
+- LinearSearch
 
-\- BinarySearch
+- BinarySearch
 
-\- SearchDemo
-
-
-
-\## Time Complexity
+- SearchDemo
 
 
 
-Linear Search
+## Time Complexity
+
+
+
+### Linear Search
 
 Best Case : O(1)
 
@@ -34,7 +34,7 @@ Worst Case : O(n)
 
 
 
-Binary Search
+### Binary Search
 
 Best Case : O(1)
 
@@ -44,7 +44,7 @@ Worst Case : O(log n)
 
 
 
-\## Conclusion
+## Conclusion
 
 
 
