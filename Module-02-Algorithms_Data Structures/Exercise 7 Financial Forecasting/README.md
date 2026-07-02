@@ -1,8 +1,8 @@
-\# Exercise 7 - Financial Forecasting
+# Exercise 7 - Financial Forecasting
 
 
 
-\## Objective
+## Objective
 
 
 
@@ -10,11 +10,11 @@ Predict the future value of an investment using recursion.
 
 
 
-\---
+---
 
 
 
-\## Formula
+## Formula
 
 
 
@@ -22,27 +22,27 @@ Future Value = Present Value × (1 + Growth Rate)^Years
 
 
 
-\---
+---
 
 
 
-\## Concepts Used
+## Concepts Used
 
 
 
-\- Recursion
+- Recursion
 
-\- Base Case
+- Base Case
 
-\- Recursive Call
-
-
-
-\---
+- Recursive Call
 
 
 
-\## Time Complexity
+---
+
+
+
+## Time Complexity
 
 
 
@@ -54,11 +54,11 @@ The recursive method makes one recursive call for each year.
 
 
 
-\---
+---
 
 
 
-\## Space Complexity
+## Space Complexity
 
 
 
@@ -70,11 +70,11 @@ The recursive call stack stores one function call per year.
 
 
 
-\---
+---
 
 
 
-\## Optimization
+## Optimization
 
 
 
@@ -82,11 +82,11 @@ Instead of recursion, an iterative loop or the mathematical formula can be used 
 
 
 
-\---
+---
 
 
 
-\## Sample Output
+## Sample Output
 
 
 

@@ -1,0 +1,13 @@
+INSERT INTO Customers VALUES (101,'Rahul');
+INSERT INTO Customers VALUES (102,'Priya');
+INSERT INTO Customers VALUES (103,'Arjun');
+
+INSERT INTO Accounts VALUES (1001,101,'Savings',50000);
+INSERT INTO Accounts VALUES (1002,102,'Savings',25000);
+INSERT INTO Accounts VALUES (1003,103,'Current',40000);
+
+INSERT INTO Employees VALUES (1,'Amit','IT',50000);
+INSERT INTO Employees VALUES (2,'Sneha','HR',45000);
+INSERT INTO Employees VALUES (3,'Kiran','IT',60000);
+
+COMMIT;
