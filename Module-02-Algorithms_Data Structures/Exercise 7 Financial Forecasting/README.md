@@ -1,4 +1,4 @@
-# Exercise 7 - Financial Forecasting
+# Exercise 7-Financial Forecasting
 
 
 
