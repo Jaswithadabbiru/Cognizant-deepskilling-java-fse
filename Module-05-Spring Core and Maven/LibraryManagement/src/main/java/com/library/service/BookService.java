@@ -11,6 +11,10 @@ public class BookService {
     }
 
     public void displayBook() {
+
+        System.out.println("Inside BookService");
+
         System.out.println(bookRepository.getBook());
+
     }
 }
