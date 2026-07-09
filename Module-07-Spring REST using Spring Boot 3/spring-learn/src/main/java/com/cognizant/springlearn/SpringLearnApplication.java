@@ -22,7 +22,11 @@ public class SpringLearnApplication {
 
         LOGGER.info("Inside main");
 
+        // Hands-on 1
         displayDate();
+
+        // Hands-on 4
+        displayCountry();
     }
 
     private static void displayDate() {
@@ -44,5 +48,20 @@ public class SpringLearnApplication {
             e.printStackTrace();
 
         }
+    }
+
+    private static void displayCountry() {
+
+        LOGGER.debug("START");
+
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("country.xml");
+
+        Country country =
+                context.getBean("country", Country.class);
+
+        LOGGER.debug("Country : {}", country);
+
+        LOGGER.debug("END");
     }
 }
