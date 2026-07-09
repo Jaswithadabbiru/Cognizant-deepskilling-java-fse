@@ -1,4 +1,0 @@
-package com.cognizant.greet_service.controller;
-
-public class GreetController {
-}
