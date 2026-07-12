@@ -1,0 +1,24 @@
+<h2>Add Course</h2>
+
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+
+  <p>
+    <label>Course Name</label><br>
+    <input type="text" formControlName="name">
+  </p>
+
+  <p>
+    <label>Course Code</label><br>
+    <input type="text" formControlName="code">
+  </p>
+
+  <p>
+    <label>Credits</label><br>
+    <input type="number" formControlName="credits">
+  </p>
+
+  <button type="submit">
+    Save Course
+  </button>
+
+</form>
