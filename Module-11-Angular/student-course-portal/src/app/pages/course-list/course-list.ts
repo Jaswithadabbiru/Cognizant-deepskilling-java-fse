@@ -4,6 +4,7 @@ import { CourseCard } from '../../components/course-card/course-card';
 import { CourseService } from '../../services/course';
 import { Course } from '../../models/course.model';
 import { CourseSummary } from '../../components/course-summary/course-summary';
+import { Notification } from '../../components/notification/notification';
 
 @Component({
   selector: 'app-course-list',
@@ -11,7 +12,8 @@ import { CourseSummary } from '../../components/course-summary/course-summary';
   imports: [
     CommonModule,
     CourseCard,
-    CourseSummary
+    CourseSummary,
+    Notification
   ],
   templateUrl: './course-list.html',
   styleUrl: './course-list.css'
@@ -26,17 +28,27 @@ export class CourseList implements OnInit {
 
   ngOnInit(): void {
 
-    setTimeout(() => {
+    this.courseService.getCourses().subscribe({
 
-      this.courses = this.courseService.getCourses();
+      next: (data) => {
 
-      this.isLoading = false;
+        this.courses = data;
+        this.isLoading = false;
 
-    },150);
+      },
+
+      error: (err) => {
+
+        console.error(err);
+        this.isLoading = false;
+
+      }
+
+    });
 
   }
 
-  trackByCourseId(index:number,course:Course){
+  trackByCourseId(index: number, course: Course) {
 
     return course.id;
 

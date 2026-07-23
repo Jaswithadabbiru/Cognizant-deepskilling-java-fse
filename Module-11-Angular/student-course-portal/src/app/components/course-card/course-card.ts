@@ -1,36 +1,79 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  CommonModule,
+  NgClass,
+  NgStyle,
+  NgSwitch,
+  NgSwitchCase,
+  NgSwitchDefault
+} from '@angular/common';
+import { Router } from '@angular/router';
+
+import { Course } from '../../models/course.model';
+import { CreditPipe } from '../../pipes/credit-pipe';
 import { Highlight } from '../../directives/highlight';
-import { CreditPipe } from '../../pipes/credit-pipe'; 
+import { EnrollmentService } from '../../services/enrollment';
 
 @Component({
   selector: 'app-course-card',
   standalone: true,
-  imports: [CommonModule, Highlight, CreditPipe],
+  imports: [
+    CommonModule,
+    CreditPipe,
+    Highlight,
+    NgClass,
+    NgStyle,
+    NgSwitch,
+    NgSwitchCase,
+    NgSwitchDefault
+  ],
   templateUrl: './course-card.html',
   styleUrl: './course-card.css'
 })
 export class CourseCard {
 
-  @Input() course: any;
+  @Input() course!: Course;
 
-  enrolled = false;
   isExpanded = false;
 
+  constructor(
+    private enrollmentService: EnrollmentService,
+    private router: Router
+  ) {}
+
+  get enrolled(): boolean {
+    return this.enrollmentService.isEnrolled(this.course.id);
+  }
+
+  get cardClasses() {
+    return {
+      passed: this.course.gradeStatus === 'passed',
+      failed: this.course.gradeStatus === 'failed',
+      pending: this.course.gradeStatus === 'pending'
+    };
+  }
+
   toggleEnroll() {
-    this.enrolled = !this.enrolled;
+    if (this.enrolled) {
+      this.enrollmentService.unenroll(this.course.id);
+    } else {
+      this.enrollmentService.enroll(this.course.id);
+    }
   }
 
   toggleDetails() {
     this.isExpanded = !this.isExpanded;
   }
 
-  get cardClasses() {
-    return {
-      'card--enrolled': this.enrolled,
-      'card--full': this.course?.credits >= 4,
-      'expanded': this.isExpanded
-    };
-  }
+  viewDetails() {
+  this.router.navigate(
+    ['/courses', this.course.id],
+    {
+      queryParams: {
+        mode: 'view'
+      }
+    }
+  );
+}
 
 }

@@ -2,6 +2,10 @@
 
 <div *ngIf="!isLoading; else noCourses">
 
+<app-notification></app-notification>
+
+<hr>
+
 <app-course-summary
   [courses]="courses">
 </app-course-summary>

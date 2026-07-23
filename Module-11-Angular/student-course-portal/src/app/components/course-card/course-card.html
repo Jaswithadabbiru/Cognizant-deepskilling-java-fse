@@ -13,9 +13,7 @@
 
   <h3>{{ course.name }}</h3>
 
-  <p><strong>Code:</strong> {{ course.code }}</p>
-
-  <p><strong>Credits:</strong> {{ course.credits | credit }}</p>
+  <p>Credits: {{ course.credits | credit }}</p>
 
   <div [ngSwitch]="course.gradeStatus">
 
@@ -43,8 +41,15 @@
     Show Details
   </button>
 
+  <button (click)="viewDetails()">
+    View Details
+  </button>
+
   <div *ngIf="isExpanded">
-    <p><strong>Course ID:</strong> {{ course.id }}</p>
+
+    <p>Course ID: {{ course.id }}</p>
+    <p>Course Code: {{ course.code }}</p>
+
   </div>
 
 </div>
