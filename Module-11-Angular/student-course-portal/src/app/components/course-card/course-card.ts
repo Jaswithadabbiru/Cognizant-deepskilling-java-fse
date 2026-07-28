@@ -8,11 +8,17 @@ import {
   NgSwitchDefault
 } from '@angular/common';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { Course } from '../../models/course.model';
 import { CreditPipe } from '../../pipes/credit-pipe';
 import { Highlight } from '../../directives/highlight';
 import { EnrollmentService } from '../../services/enrollment';
+
+import {
+  enrollInCourse,
+  unenrollFromCourse
+} from '../../store/enrollment/enrollment.actions';
 
 @Component({
   selector: 'app-course-card',
@@ -38,7 +44,8 @@ export class CourseCard {
 
   constructor(
     private enrollmentService: EnrollmentService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {}
 
   get enrolled(): boolean {
@@ -54,11 +61,29 @@ export class CourseCard {
   }
 
   toggleEnroll() {
+
     if (this.enrolled) {
+
       this.enrollmentService.unenroll(this.course.id);
+
+      this.store.dispatch(
+        unenrollFromCourse({
+          courseId: this.course.id
+        })
+      );
+
     } else {
+
       this.enrollmentService.enroll(this.course.id);
+
+      this.store.dispatch(
+        enrollInCourse({
+          courseId: this.course.id
+        })
+      );
+
     }
+
   }
 
   toggleDetails() {
@@ -66,14 +91,14 @@ export class CourseCard {
   }
 
   viewDetails() {
-  this.router.navigate(
-    ['/courses', this.course.id],
-    {
-      queryParams: {
-        mode: 'view'
+    this.router.navigate(
+      ['/courses', this.course.id],
+      {
+        queryParams: {
+          mode: 'view'
+        }
       }
-    }
-  );
-}
+    );
+  }
 
 }

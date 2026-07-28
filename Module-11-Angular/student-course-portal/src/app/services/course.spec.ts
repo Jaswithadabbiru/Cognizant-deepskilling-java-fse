@@ -1,35 +1,24 @@
-import { Injectable } from '@angular/core';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CourseService {
+import { CourseService } from './course';
 
-  constructor() {}
+describe('CourseService', () => {
+  let service: CourseService;
 
-  getCourses() {
-    return [
-      {
-        id: 1,
-        name: 'Angular',
-        code: 'ANG101',
-        credits: 3,
-        gradeStatus: 'passed'
-      },
-      {
-        id: 2,
-        name: 'Java',
-        code: 'JAVA201',
-        credits: 4,
-        gradeStatus: 'pending'
-      },
-      {
-        id: 3,
-        name: 'Spring Boot',
-        code: 'SPR301',
-        credits: 5,
-        gradeStatus: 'failed'
-      }
-    ];
-  }
-}
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        CourseService,
+        provideHttpClient()
+      ]
+    });
+
+    service = TestBed.inject(CourseService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});

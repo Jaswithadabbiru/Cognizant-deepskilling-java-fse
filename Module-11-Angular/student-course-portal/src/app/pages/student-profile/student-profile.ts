@@ -15,7 +15,11 @@ export class StudentProfile {
   enrolledCourses: Course[] = [];
 
   constructor(private enrollmentService: EnrollmentService) {
-    this.enrolledCourses = this.enrollmentService.getEnrolledCourses();
-  }
+
+  this.enrollmentService.getEnrolledCourses().subscribe(courses => {
+    this.enrolledCourses = courses;
+  });
+
+}
 
 }

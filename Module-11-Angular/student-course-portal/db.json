@@ -1,0 +1,25 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "name": "Angular",
+      "code": "ANG101",
+      "credits": 3,
+      "gradeStatus": "Passed"
+    },
+    {
+      "id": 2,
+      "name": "Spring Boot",
+      "code": "SPR201",
+      "credits": 4,
+      "gradeStatus": "Pending"
+    },
+    {
+      "id": 3,
+      "name": "Microservices",
+      "code": "MIC301",
+      "credits": 5,
+      "gradeStatus": "passed"
+    }
+  ]
+}

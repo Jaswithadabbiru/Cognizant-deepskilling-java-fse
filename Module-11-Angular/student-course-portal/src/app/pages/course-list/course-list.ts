@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
 import { CourseCard } from '../../components/course-card/course-card';
-import { CourseService } from '../../services/course';
-import { Course } from '../../models/course.model';
 import { CourseSummary } from '../../components/course-summary/course-summary';
 import { Notification } from '../../components/notification/notification';
+
+import { Course } from '../../models/course.model';
+import { loadCourses } from '../../store/course.actions';
+import { selectCourses } from '../../store/course.selectors';
 
 @Component({
   selector: 'app-course-list',
@@ -20,35 +25,19 @@ import { Notification } from '../../components/notification/notification';
 })
 export class CourseList implements OnInit {
 
-  isLoading = true;
+  courses$!: Observable<Course[]>;
 
-  courses: Course[] = [];
-
-  constructor(private courseService: CourseService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
 
-    this.courseService.getCourses().subscribe({
+    this.store.dispatch(loadCourses());
 
-      next: (data) => {
-
-        this.courses = data;
-        this.isLoading = false;
-
-      },
-
-      error: (err) => {
-
-        console.error(err);
-        this.isLoading = false;
-
-      }
-
-    });
+    this.courses$ = this.store.select(selectCourses);
 
   }
 
-  trackByCourseId(index: number, course: Course) {
+  trackByCourseId(index: number, course: Course): number {
 
     return course.id;
 
